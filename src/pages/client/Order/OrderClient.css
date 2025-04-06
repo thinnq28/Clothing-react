@@ -1,0 +1,165 @@
+.OrderContainer {
+    color: #333;
+    /* Changed to a dark font color for better readability */
+    background-color: #f9f9f9;
+    /* Light background color */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.introSection {
+    color: #333;
+    padding: 20px;
+    text-align: center;
+}
+
+.productHeader {
+    color: rgb(233, 66, 178);
+}
+
+.formControl {
+    border: 1px solid #a1aeee;
+    /* Adjusted border color */
+    color: #333;
+    background-color: #fff;
+    /* White background for input fields */
+    border-radius: 5px;
+}
+
+.formControl:focus {
+    border-color: #a1aeee;
+    background-color: #e9f0ff;
+    /* Soft blue focus background */
+}
+
+.formLabel {
+    color: #333;
+}
+
+.productHeader {
+    color: rgb(233, 66, 178);
+}
+
+.productOrder {
+    color: #e75d5d;
+    margin-top: 20px;
+}
+
+.tableOrder {
+    width: 100%;
+    border-radius: 10px;
+    border-collapse: separate;
+    border-spacing: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    /* White background for table */
+    margin-top: 20px;
+}
+
+.tableOrder th,
+td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.productInfo {
+    display: flex;
+    align-items: center;
+}
+
+.productImage {
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.productName {
+    color: #333;
+    text-align: left;
+}
+
+.btnGradient {
+    background: linear-gradient(to right, rgb(233, 66, 178), rgb(127, 68, 255));
+    color: white;
+    border-radius: 30px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btnGradient:hover {
+    background: linear-gradient(to right, rgb(127, 68, 255), rgb(233, 66, 178));
+}
+
+.borderWrapper {
+    border: 1px solid #a1aeee;
+    border-radius: 5px;
+}
+
+.productQuantity {
+    
+    align-items: center;
+    
+    margin-top: 10px;
+}
+
+.productQuantity button {
+    background-color: transparent;
+    border: none;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.productQuantity input {
+    background-color: transparent;
+    border: none;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    text-align: center;
+    width: 40px;
+    margin: 0 10px;
+}
+
+.productQuantity input:focus {
+    outline: none;
+}
+
+.borderLeftSuccess {
+    border-left: 0.25rem solid #1cc88a !important;
+}
+
+
+.card .btn {
+    padding: 0.25rem 0.5rem;
+}
+
+.card .faXmark {
+    font-size: 1.2rem;
+}
+
+.voucher-tag {
+    display: flex;
+    align-items: center;
+    background-color: #e0e0e0;
+    border-radius: 16px;
+    padding: 4px 10px;
+    font-weight: 500;
+    font-size: 14px;
+    gap: 8px;
+    transition: background 0.2s;
+}
+
+.voucher-tag button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1;
+    cursor: pointer;
+    color: #333;
+    padding: 0;
+}

@@ -1,0 +1,13 @@
+.update-product__image-preview {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.update-product__image {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    object-fit: cover;
+}

@@ -1,0 +1,121 @@
+
+  
+  .card-order {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .card-header-order {
+    padding: 15px 20px;
+    background-color: #f8f9fa;
+    font-weight: bold;
+    font-size: 18px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .card-body-order {
+    padding: 20px;
+  }
+  
+  .track {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    position: relative;
+  }
+  
+  .track .step {
+    text-align: center;
+    position: relative;
+    flex: 1;
+  }
+  
+  .track .step:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: #ccc;
+    top: 22px;
+    left: -50%;
+    z-index: 1;
+  }
+  
+  .track .step:first-child:before {
+    content: none;
+  }
+  
+  .track .step.active:before {
+    background: #28a745;
+  }
+  
+  .track .step .icon {
+    display: inline-block;
+    background: #ccc;
+    color: white;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .track .step.active .icon {
+    background: #28a745;
+  }
+  
+  .track .step .text {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  .img-sm {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+  }
+  
+  .itemside {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .itemside .aside {
+    margin-right: 15px;
+  }
+  
+  .btn-warning {
+    color: white;
+    background-color: #f0ad4e;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .btn-warning:hover {
+    background-color: #ec971f;
+  }
+  
+  li {
+    list-style: none;
+  }
+
+  .btn-danger {
+    color: white;
+    background-color: #ef2c2c;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }

@@ -1,0 +1,180 @@
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .title {
+    text-align: center;
+    color: #333;
+  }
+  
+  .search-bar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-bar input {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  .options-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .options-table th, .options-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .options-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .edit-btn, .delete-btn, .detail-btn  {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+   
+  .edit-btn {
+    background-color: #28a745;
+    color: white;
+    margin-right: 5px;
+  }
+  
+  .delete-btn {
+    background-color: #dc3545;
+    color: white;
+    margin-right: 5px;
+  }
+
+  .detail-btn {
+    background-color: #41447b;
+    color: white;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: 1px solid #007bff;
+    background-color: white;
+    color: #007bff;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .pagination button:hover {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .modal-option {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: 600px;
+    z-index: 1000;
+    display: block !important; /* Thay đổi từ none thành block để kiểm tra */
+    height: auto !important;
+  }
+  
+  .modal-content {
+    display: revert;
+    background: white;
+    padding: 20px;
+    width: 50% !important;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .confirm-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .cancel-btn {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .form-select {
+    width: auto !important;
+    display: revert !important;
+  }
+
+  .tag-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+    min-height: 40px;
+    gap: 5px;
+    position: relative;
+  }
+  
+  /* Căn giữa input */
+  .tag-wrapper input {
+    flex-grow: 1;
+    width: auto !important;
+    border: none;
+    outline: none;
+    padding: 5px;
+    font-size: 14px;
+    min-width: 120px;
+  }
+  
+  .tag-wrapper input::placeholder {
+    text-align: center;
+  }
+  
+  .tag {
+    background: #e0e0e0;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .remove-tag {
+    background: none;
+    border: none;
+    margin-left: 8px;
+    cursor: pointer;
+    color: #666;
+    font-size: 14px;
+  }
+  

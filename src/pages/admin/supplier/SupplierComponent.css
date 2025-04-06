@@ -1,0 +1,160 @@
+/* Container chính */
+.supplier-container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề */
+.supplier-h1 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Bộ lọc tìm kiếm */
+.supplier-filters {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.supplier-filters input {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.btn-search {
+    background: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-search:hover {
+    background: #0056b3;
+}
+
+/* Bảng nhà cung cấp */
+.supplier-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.supplier-table th, .supplier-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.supplier-table th {
+    background: #007bff;
+    color: white;
+}
+
+.supplier-table tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+/* Nút trong bảng */
+/* .supplier-table button {
+    background: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 0 3px;
+}
+
+.supplier-table button:hover {
+    background: #0056b3;
+} */
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    width: 400px;
+    z-index: 1000;
+    display: block !important; /* Thay đổi từ none thành block để kiểm tra */
+    height: auto !important;
+}
+
+
+.modal h2 {
+    text-align: center;
+    color: #333;
+}
+
+.modal input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.modal button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.modal button:first-of-type {
+    background: #007bff;
+    color: white;
+}
+
+.modal button:first-of-type:hover {
+    background: #0056b3;
+}
+
+.modal button:last-of-type {
+    background: #dc3545;
+    color: white;
+}
+
+.modal button:last-of-type:hover {
+    background: #c82333;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .supplier-filters {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .supplier-table th, .supplier-table td {
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    .modal {
+        width: 90%;
+    }
+}
