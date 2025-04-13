@@ -40,23 +40,13 @@ interface OrderItem {
 }
 
 interface OrderDetailResponse {
-    id: number;
-    fullName: string;
-    phoneNumber: string;
-    email: string;
-    address: string;
-    orderDate: string;
-    status: string;
-    paymentStatus: string;
-    total_money: number;
-    items: OrderItem[];
-    totalVoucherPercentage: number;
-    totalVoucherFixed: number;
+    labels: [],
+    data: []
 }
 
 const Dashboard: React.FC = () => {
     const navigate = useNavigate();
-    const [orders, setOrders] = useState<OrderDetailResponse[]>([]);
+    const [order, setOrder] = useState<OrderDetailResponse>();
     const fetchWithAuth = useFetchWithAuth();
     const [filter, setFilter] = useState<string>('this_week');
 
@@ -68,7 +58,8 @@ const Dashboard: React.FC = () => {
                 }
             }).then(result => {
                 const data = result.data;
-                setOrders(data.orders);
+                console.log(data);
+                setOrder(data);
             })
 
         } catch (error: any) {
@@ -81,17 +72,24 @@ const Dashboard: React.FC = () => {
     }, [filter]);
 
     useEffect(() => {
+        if (!order) return;
+    
         feather.replace();
-
+    
         const ctx = document.getElementById('myChart') as HTMLCanvasElement;
         if (ctx) {
+            // Xoá biểu đồ cũ nếu có
+            if (Chart.getChart(ctx)) {
+                Chart.getChart(ctx)?.destroy();
+            }
+    
             new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'aaa'],
+                    labels: order.labels,
                     datasets: [{
-                        label: 'Example',
-                        data: [12, 19, 3, 5, 2, 3, 9],
+                        label: 'Doanh thu',
+                        data: order.data,
                         borderColor: 'rgba(75,192,192,1)',
                         backgroundColor: 'rgba(75,192,192,0.2)',
                         tension: 0.4,
@@ -114,21 +112,22 @@ const Dashboard: React.FC = () => {
                             display: true,
                             title: {
                                 display: true,
-                                text: 'Day'
+                                text: 'Ngày'
                             }
                         },
                         y: {
                             display: true,
                             title: {
                                 display: true,
-                                text: 'Value'
+                                text: 'Tổng tiền (VNĐ)'
                             }
                         }
                     }
                 }
             });
         }
-    }, []);
+    }, [order]);
+    
 
     return (
         <>
