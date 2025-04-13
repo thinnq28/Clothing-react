@@ -36,7 +36,7 @@ const Topbar = () => {
 
         {/* Nav Item - Dashboard */}
         <li className="nav-item active">
-          <Link className="nav-link" to="/admin">
+          <Link className="nav-link" to="/admin/dashboard">
             <FontAwesomeIcon icon={faTachometerAlt} className="fa-fw" />
             <span>Dashboard</span>
           </Link>
@@ -77,9 +77,9 @@ const Topbar = () => {
         </li>
 
         <li className="nav-item">
-          <Link className="nav-link" to="/admin/promotions">
+          <Link className="nav-link" to="/admin/cashier">
             <FontAwesomeIcon icon={faPaypal} />
-            <span>Promotions</span>
+            <span>Cashier</span>
           </Link>
         </li>
 

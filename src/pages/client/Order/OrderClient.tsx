@@ -12,6 +12,7 @@ import { environment } from '../../../environment/environment';
 import axios from 'axios';
 import "./OrderClient.css";
 import { usePayOS } from "@payos/payos-checkout";
+import Footer from '../Footer/FooterClient';
 
 interface PayOSConfig {
     RETURN_URL: string;
@@ -78,9 +79,11 @@ const OrderPage: React.FC = () => {
 
                 await OrderService.placeOrder(orderData)
                     .then(result => {
-                        debugger
                         if (result.status != 200) {
                             toast.error('Lỗi khi đặt hàng');
+                            if (Array.isArray(result.data)) {
+                                result.data.forEach((msg: string) => toast.error(msg));
+                              } 
                             return;
                         } else {
                             if (orderData.paymentMethod == 'cod') {
@@ -92,9 +95,8 @@ const OrderPage: React.FC = () => {
                             orderId = result.data.data.id;
                         }
                     });
-                    debugger
+                    
                     if (orderData.paymentMethod != 'cod' && orderId != null) {
-                        debugger
                         const items: item[] = cartItems.map(cartItem => ({
                             itemName: cartItem.variant.variantName,
                             itemPrice: cartItem.variant.price,
@@ -296,33 +298,15 @@ const OrderPage: React.FC = () => {
 
 
     //thanh toan    
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [message, setMessage] = useState<string>("");
-    const [isCreatingLink, setIsCreatingLink] = useState<boolean>(false);
-
-    const [payOSConfig, setPayOSConfig] = useState<PayOSConfig>({
-        RETURN_URL: "http://localhost:5173/haiha/orders",
-        ELEMENT_ID: "embedded-payment-container",
-        CHECKOUT_URL: "",
-        embedded: true,
-        onSuccess: (event) => {
-            setIsOpen(false);
-            setMessage("Thanh toán thành công");
-        },
-    });
-
-    const { open, exit } = usePayOS(payOSConfig);
-
     const handleGetPaymentLink = async (items: item[], orderId: string) => {
         try {
-            debugger
-            setIsCreatingLink(true);
-            exit();
 
             const checkoutDTO = {
                 amount: totalAmount,
                 items: items,
-                orderId: orderId
+                orderId: orderId,
+                returnUrl: "haiha/payment-success",
+                cancelUrl: "haiha/payment-cancel",
             }
 
             await axios.post(`${environment.apiBaseUrl}/client/create-payment-link`, checkoutDTO)
@@ -333,11 +317,6 @@ const OrderPage: React.FC = () => {
                         return;
                     } else {
                         const data = result.data.data;
-                        setPayOSConfig((oldConfig) => ({
-                            ...oldConfig,
-                            CHECKOUT_URL: data.checkoutUrl,
-                        }));
-                        setIsOpen(true);
                         clearCart();
                         window.location.href = data.checkoutUrl;
                     }
@@ -345,16 +324,8 @@ const OrderPage: React.FC = () => {
         } catch (error) {
             toast.error('Đã có lỗi khi tạo mã QR');
             console.error("Error creating payment link:", error);
-        } finally {
-            setIsCreatingLink(false);
-        }
+        } 
     };
-
-    useEffect(() => {
-        if (payOSConfig.CHECKOUT_URL != null) {
-            open();
-        }
-    }, [payOSConfig, open]);
 
     return (
         <>
@@ -471,6 +442,8 @@ const OrderPage: React.FC = () => {
                     </div>
                 </form>
             </div>
+
+            <Footer />
 
 
         </>

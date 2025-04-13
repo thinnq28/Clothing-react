@@ -8,6 +8,7 @@ import useFetchWithAuthUser from '../../../fetch/FetchUser';
 import Header from '../Header/HeaderClient';
 import "./TrackOrderDetail.css"
 import { FaChevronLeft } from 'react-icons/fa';
+import Footer from '../Footer/FooterClient';
 
 interface ImageDataResponse {
     url: string;
@@ -30,6 +31,7 @@ const TrackOrderDetail: React.FC = () => {
     const [order, setOrder] = useState<OrderResponse>();
     const navigate = useNavigate();
     const fetchWithAuth = useFetchWithAuthUser();
+    const [isCancel, setIsCancel] = useState<boolean>(false);
 
     useEffect(() => {
         const token = localStorage.getItem('clientToken') || sessionStorage.getItem('clientToken');
@@ -85,6 +87,7 @@ const TrackOrderDetail: React.FC = () => {
                         toast.error(result.message);
                     } else {
                         setOrder(result.data);
+                        setIsCancel(result.data.status == 'cancelled');
                     }
                 })
 
@@ -92,6 +95,23 @@ const TrackOrderDetail: React.FC = () => {
             // Optional: toast.error
         }
     };
+
+    const cancelOrder = async () => {
+        fetchWithAuth(`/orders/cancel/${id}`, {
+            method: "PUT"
+        })
+        .then(result => {
+            if (result.status != "OK") {
+                toast.error(result.data);
+            } else {
+                toast.success(result.data)
+                setTimeout(() => navigate(0), 2000);
+            }
+        }).catch(error => {
+            toast.error(error.data);
+            console.log(error);
+        })
+    }
 
     return (
         <>
@@ -139,12 +159,14 @@ const TrackOrderDetail: React.FC = () => {
                             <FaChevronLeft/> Trở về
                         </Link>
 
-                        <button className="btn btn-danger" >
+                       {!isCancel && ( <button className="btn btn-danger" onClick={cancelOrder} >
                             Huỷ đơn hàng
-                        </button>
+                        </button>)}
                     </div>
                 </article>
             </div>
+
+            <Footer />
             <ToastContainer position="bottom-center" autoClose={5000} />
         </>
     );

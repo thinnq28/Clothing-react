@@ -4,6 +4,7 @@ import useFetchWithAuth from '../../../fetch/FetchUser';
 import { toast } from 'react-toastify';
 import { environment } from '../../../environment/environment';
 import Header from '../Header/HeaderClient';
+import Footer from "../Footer/FooterClient";
 import styles from './home.module.css';
 import { CommodityDataResponse } from '../../../responses/commodity/Commodity.data.response';
 import axios from 'axios';
@@ -268,6 +269,8 @@ const HomeClient: React.FC = () => {
                     </ul>
                 </nav>
             </div>
+
+            <Footer />
         </>
     );
 };

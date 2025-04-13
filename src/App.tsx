@@ -32,145 +32,189 @@ import OrderPage from "./pages/client/Order/OrderClient";
 import PaymentSuccess from "./pages/client/Order/PaymentSuccess";
 import TrackOrder from "./pages/client/TrackOrder/TrackOrder";
 import TrackOrderDetail from "./pages/client/TrackOrder/TrackOrderDetail";
+import TrackOrderWithPhoneNumber from "./pages/client/TrackOrder/TrackOrderWithPhoneNumber";
+import CheckoutForm from "./pages/admin/Cashier/Cashier";
+import CheckoutManager from "./pages/admin/Cashier/CheckoutManager";
+import PaymentSuccessCashier from "./pages/admin/Cashier/PaymentSuccess";
+import PaymentCancel from "./pages/client/Order/CancelPayment";
+import PaymentCancelCashier from "./pages/admin/Cashier/CancelPayment";
+import PageWithDelay from "./components/PayWithDelay";
+import OrderManagement from "./pages/admin/Order/Order";
+import OrderDetail from "./pages/admin/Order/OrderDetail";
+import Dashboard from "./pages/admin/Dashboard/Dashboard";
 const client = "/haiha";
 const App = () => {
+
+  const wrapWithDelay = (component: React.ReactNode) => (
+    <PageWithDelay>{component}</PageWithDelay>
+  );
+
   return (
 
     <Router>
 
-      {/* Route dành cho khách hàng */}
       <Routes>
-        <Route path="/haiha" element={<HomeClient />} >
-        </Route>
-
-        <Route path="/haiha/login" element={<LoginClient />} />
-        <Route path="/haiha/product/:id" element={<ProductDetail />} />
-        <Route path="/haiha/orders" element={<OrderPage />} />
-        <Route path="/haiha/payment-success" element={<PaymentSuccess />} />
-
-        <Route path="/haiha/tracking-order" element={<TrackOrder />} />
-        <Route path="/haiha/tracking-order/:id" element={<TrackOrderDetail />} />
+        {/* Route dành cho khách hàng */}
+        <Route path="/haiha" element={wrapWithDelay(<HomeClient />)} />
+        <Route path="/haiha/login" element={wrapWithDelay(<LoginClient />)} />
+        <Route path="/haiha/product/:id" element={wrapWithDelay(<ProductDetail />)} />
+        <Route path="/haiha/orders" element={wrapWithDelay(<OrderPage />)} />
+        <Route path="/haiha/payment-success" element={wrapWithDelay(<PaymentSuccess />)} />
+        <Route path="/haiha/payment-cancel" element={wrapWithDelay(<PaymentCancel />)} />
+        <Route path="/haiha/tracking-order" element={wrapWithDelay(<TrackOrder />)} />
+        <Route path="/haiha/tracking-order/phone-number/:phone_number" element={wrapWithDelay(<TrackOrderWithPhoneNumber />)} />
+        <Route path="/haiha/tracking-order-detail/:id" element={wrapWithDelay(<TrackOrderDetail />)} />
       </Routes>
+
 
       <AuthAdminProvider>
         <Routes>
+          {/* Admin login và forbidden */}
+          <Route path="/admin/login" element={wrapWithDelay(<LoginAdmin />)} />
+          <Route path="/admin/forbidden" element={wrapWithDelay(<ForbiddenPage />)} />
+
           {/* Route chỉ dành cho Admin */}
           <Route
             path="/admin"
             element={
               <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
-                <AdminDashboard />
+                {wrapWithDelay(<AdminDashboard />)}
               </ProtectedAdminRoute>
-            }>
+            }
+          >
             <Route path="/admin/change-password" element={
               <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
-                <ChangePassword />
+                {wrapWithDelay(<ChangePassword />)}
               </ProtectedAdminRoute>
             } />
 
             <Route path="/admin/commodities" element={
               <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
-                <CommodityComponent />
+                {wrapWithDelay(<CommodityComponent />)}
               </ProtectedAdminRoute>
             } />
 
             <Route path="/admin/options" element={
               <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
-                <OptionComponent />
+                {wrapWithDelay(<OptionComponent />)}
               </ProtectedAdminRoute>
             } />
 
             <Route path="/admin/options/:id" element={
               <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
-                <OptionValueComponent />
+                {wrapWithDelay(<OptionValueComponent />)}
               </ProtectedAdminRoute>
             } />
 
             <Route path="/admin/products" element={
               <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
-                <ProductComponent />
+                {wrapWithDelay(<ProductComponent />)}
               </ProtectedAdminRoute>
             } />
 
             <Route path="/admin/products/create" element={
               <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
-                <InsertProduct />
+                {wrapWithDelay(<InsertProduct />)}
               </ProtectedAdminRoute>
             } />
 
             <Route path="/admin/products/edit/:id" element={
               <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
-                <UpdateProduct />
+                {wrapWithDelay(<UpdateProduct />)}
               </ProtectedAdminRoute>
             } />
 
             <Route path="/admin/suppliers" element={
               <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
-                <SupplierComponent />
+                {wrapWithDelay(<SupplierComponent />)}
               </ProtectedAdminRoute>
             } />
 
             <Route path="/admin/promotions" element={
               <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
-                <PromotionComponent />
+                {wrapWithDelay(<PromotionComponent />)}
               </ProtectedAdminRoute>
             } />
 
             <Route path="/admin/vouchers" element={
               <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
-                <VoucherManagement />
+                {wrapWithDelay(<VoucherManagement />)}
               </ProtectedAdminRoute>
             } />
 
             <Route path="/admin/promotions/add-for-variant/:id" element={
               <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
-                <AddPromotionVariant />
+                {wrapWithDelay(<AddPromotionVariant />)}
               </ProtectedAdminRoute>
             } />
 
             <Route path="/admin/variants" element={
               <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
-                <VariantManager />
+                {wrapWithDelay(<VariantManager />)}
               </ProtectedAdminRoute>
             } />
 
             <Route path="/admin/variants/create" element={
               <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
-                <InsertVariant />
+                {wrapWithDelay(<InsertVariant />)}
               </ProtectedAdminRoute>
             } />
 
             <Route path="/admin/variants/edit/:id" element={
               <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
-                <UpdateVariant />
+                {wrapWithDelay(<UpdateVariant />)}
               </ProtectedAdminRoute>
             } />
 
             <Route path="/admin/user-management" element={
               <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
-                <UserManagement />
+                {wrapWithDelay(<UserManagement />)}
               </ProtectedAdminRoute>
             } />
 
             <Route path="/admin/authorization-user" element={
               <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
-                <AuthorizationUser />
+                {wrapWithDelay(<AuthorizationUser />)}
               </ProtectedAdminRoute>
             } />
 
             <Route path="/admin/profile" element={
               <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
-                <SelfEdit />
+                {wrapWithDelay(<SelfEdit />)}
               </ProtectedAdminRoute>
             } />
 
+            <Route path="/admin/cashier" element={
+              <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
+                {wrapWithDelay(<CheckoutManager />)}
+              </ProtectedAdminRoute>
+            } />
+
+            <Route path="/admin/orders" element={
+              <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
+                {wrapWithDelay(<OrderManagement />)}
+              </ProtectedAdminRoute>
+            } />
+
+            <Route path="/admin/orders/detail/:id" element={
+              <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
+                {wrapWithDelay(<OrderDetail />)}
+              </ProtectedAdminRoute>
+            } />
+
+            <Route path="/admin/dashboard" element={
+              <ProtectedAdminRoute allowedRoles={["ROLE_ADMIN", "ROLE_USER"]}>
+                {wrapWithDelay(<Dashboard />)}
+              </ProtectedAdminRoute>
+            } />
           </Route>
 
-          <Route path="/admin/login" element={<LoginAdmin />} />
-          <Route path="/admin/forbidden" element={<ForbiddenPage />} />
-          {/* <Route path="*" element={<NotFoundPage />} /> */}
+          {/* Kết quả thanh toán admin (không cần quyền) */}
+          <Route path="/admin/payment-success" element={wrapWithDelay(<PaymentSuccessCashier />)} />
+          <Route path="/admin/payment-cancel" element={wrapWithDelay(<PaymentCancelCashier />)} />
         </Routes>
       </AuthAdminProvider>
+
 
       {/* ToastContainer để hiển thị thông báo */}
       <ToastContainer

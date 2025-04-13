@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import { environment } from '../../../environment/environment';
 import axios from 'axios';
 import './ProductClient.css'
+import Footer from '../Footer/FooterClient';
 
 const ProductDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -129,7 +130,7 @@ const ProductDetail: React.FC = () => {
     return (
         <>
             <HeaderClient />
-            <div className="OrderContainer">
+            <div className="container">
                 <h1 className="fw-semibold mb-4">Đây là trang chi tiết sản phẩm</h1>
                 <h5>Tên sản phẩm: <p className="text-primary m-0 fw-bold">{product?.productName}</p></h5>
 
@@ -267,6 +268,8 @@ const ProductDetail: React.FC = () => {
                     </div>
                 ))} */}
             </div>
+
+            <Footer />
         </>
     );
 };

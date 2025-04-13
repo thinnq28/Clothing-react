@@ -1,0 +1,42 @@
+.container-cashier {
+    width: 100% !important; 
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+
+  .voucher-tag-cashier {
+    display: inline-flex;
+    align-items: center;
+    background-color: #e6f4ea;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+    border-radius: 16px;
+    padding: 2px 8px;
+    margin: 4px 4px 0 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  
+  .voucher-tag-cashier button {
+    background: none;
+    border: none;
+    color: #2e7d32;
+    font-size: 1rem;
+    line-height: 1;
+    margin-left: 6px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  
+  .voucher-tag-cashier button:hover {
+    color: #c62828;
+  }
+  
+
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

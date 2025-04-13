@@ -3,6 +3,7 @@ import { OrderDTO } from '../dtos/order/order.dto';
 import { OrderResponse } from '../responses/order/order.response';
 import { UpdateStatusOrderDTO } from '../dtos/order/update.status.order.dto';
 import useFetchWithAuthUser from '../fetch/FetchUser';
+import useFetchWithAuth from '../fetch/FetchAdmin';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api'; // hoặc process.env nếu dùng CRA
 const apiUrl = `${API_BASE_URL}/orders`;
@@ -94,8 +95,19 @@ const OrderService = {
   },
 
   updateStatus: async (orderId: number, orderData: UpdateStatusOrderDTO) => {
-    const response = await axios.put(`${apiUrl}/update-status/${orderId}`, orderData);
-    return response.data;
+    const fetchWithAuth = useFetchWithAuth();
+    return await fetchWithAuth(`/orders/update-status/${orderId}`, {
+      method: "PUT",
+      body: JSON.stringify(orderData)
+    });
+  },
+
+  updatePaymentStatus: async (orderId: number, orderData: UpdateStatusOrderDTO) => {
+    const fetchWithAuth = useFetchWithAuth();
+    return await fetchWithAuth(`/orders/update/payment-status/${orderId}`, {
+      method: "PUT",
+      body: JSON.stringify(orderData)
+    });
   },
 
   deleteOrder: async (orderId: number) => {

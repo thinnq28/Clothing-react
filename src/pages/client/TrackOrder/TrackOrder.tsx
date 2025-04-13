@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./TrackOrder.css"
 import Header from '../Header/HeaderClient';
 import { FaInfo } from 'react-icons/fa';
+import Footer from '../Footer/FooterClient';
 
 const TrackOrder: React.FC = () => {
     const [orders, setOrders] = useState<OrderResponse[]>([]);
@@ -185,6 +186,8 @@ const TrackOrder: React.FC = () => {
                     </div>
                 </div>
             </div>
+
+            <Footer />
 
             <ToastContainer />
         </div>

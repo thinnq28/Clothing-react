@@ -53,12 +53,13 @@ const AddPromotionVariant: React.FC = () => {
 
     const fetchPromotion = async () => {
         try {
+            
             PromotionService.getPromotionById(promotionId)
                 .then(result => {
                     if (result.status != "OK") {
                         toast.error(result.message);
                     } else {
-                        setPromotion(result.data.data);
+                        setPromotion(result.data);
                     }
                 }).catch(error => {
                     toast.error(error);
@@ -71,10 +72,9 @@ const AddPromotionVariant: React.FC = () => {
 
     const fetchVariants = async () => {
         try {
-
-
             VariantService.getVariants(name,
                 productName,
+                promotionId,
                 minQuantity ?? 0,
                 maxQuantity ?? 0,
                 minPrice ?? 0,

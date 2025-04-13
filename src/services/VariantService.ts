@@ -27,6 +27,7 @@ const VariantService = {
   getVariants: async (
     name: string,
     productName: string,
+    promotionId: number,
     minQuantity: number,
     maxQuantity: number,
     minPrice: number,
@@ -38,6 +39,7 @@ const VariantService = {
     const params = {
       name,
       product_name: productName,
+      promotion_id: promotionId,
       min_quantity: minQuantity,
       max_quantity: maxQuantity,
       min_price: minPrice,
@@ -97,6 +99,15 @@ const VariantService = {
   getVariantById: async (id: number) => {
     const fetchWithAuth = useFetchWithAuth();
     return await fetchWithAuth(`${apiVariants}/details/${id}`);
+  },
+
+  getVariantByName: async (name: string) => {
+    const fetchWithAuth = useFetchWithAuth();
+    return await fetchWithAuth(`${apiVariants}/by-name`, {
+      params: {
+        name
+      }
+    });
   },
 
   getVariantByIds: async (ids: number[]) => {

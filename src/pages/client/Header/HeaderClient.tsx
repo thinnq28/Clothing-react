@@ -1,10 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CommodityDataResponse } from '../../../responses/commodity/Commodity.data.response';
-import { UserDataResponse } from '../../../responses/user/user.data.response';
-import commodityService from '../../../services/CommodityService';
-import ClientService from '../../../services/ClientService';
-import tokenService from '../../../services/tokenService';
 import axios from 'axios';
 import { environment } from '../../../environment/environment';
 import { toast } from 'react-toastify';
